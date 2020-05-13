@@ -1,0 +1,143 @@
+>> python3 rule-learn.py error1
+----------------------------------------------------
+>> python3 rule-learn.py error2
+----------------------------------------------------
+>> python3 rule-learn.py error3_e
+The following events are repeats and should be new rules
+ERROR green appeared after yellow
+ERROR red appeared after green
+Found the explanation  ERROR green appeared after yellow
+Found triple
+['green', 'after', 'yellow']
+Found the explanation  ERROR red appeared after green
+Found triple
+['red', 'after', 'green']
+:added-rule-1 a air:Belief-rule;
+    rdfs:comment "Trying this out .";
+    air:if {
+        foo:green ontology:after foo:yellow. };
+    air:then[
+        air:description ("ERROR green appeared after yellow"); 
+        air:assert[air:statement{foo:cone  air:compliant-with :learned_policy .}]] ;
+    air:else [
+        air:assert[air:statement{foo:cone  air:non-compliant-with :learned_policy .}]] ;
+:added-rule-2 a air:Belief-rule;
+    rdfs:comment "Trying this out .";
+    air:if {
+        foo:red ontology:after foo:green. };
+    air:then[
+        air:description ("ERROR red appeared after green"); 
+        air:assert[air:statement{foo:cone  air:compliant-with :learned_policy .}]] ;
+    air:else [
+        air:assert[air:statement{foo:cone  air:non-compliant-with :learned_policy .}]] ;
+----------------------------------------------------
+>> python3 rule-learn.py error4
+The following events are repeats and should be new rules
+ERROR red appeared after green
+Found the explanation  ERROR red appeared after green
+Found triple
+['red', 'after', 'green']
+:added-rule-1 a air:Belief-rule;
+    rdfs:comment "Trying this out .";
+    air:if {
+        foo:red ontology:after foo:green. };
+    air:then[
+        air:description ("ERROR red appeared after green"); 
+        air:assert[air:statement{foo:cone  air:compliant-with :learned_policy .}]] ;
+    air:else [
+        air:assert[air:statement{foo:cone  air:non-compliant-with :learned_policy .}]] ;
+----------------------------------------------------
+>> python3 rule-learn.py error5
+----------------------------------------------------
+>> python3 rule-learn.py normal1
+----------------------------------------------------
+>> python3 rule-learn.py normal2
+----------------------------------------------------
+>> python3 rule-learn.py normal3
+----------------------------------------------------
+>> python3 rule-learn.py normal4
+----------------------------------------------------
+>> python3 rule-learn.py normal5_e
+----------------------------------------------------
+>> python3 rule-learn.py repeat1
+The following events are repeats and should be new rules
+ERROR green appeared after yellow
+Found the explanation  ERROR green appeared after yellow
+Found triple
+['green', 'after', 'yellow']
+
+:added-rule-1 a air:Belief-rule;
+    rdfs:comment "Trying this out .";
+    air:if {
+        foo:green ontology:after foo:yellow. };
+    air:then[
+        air:description ("ERROR green appeared after yellow"); 
+        air:assert[air:statement{foo:cone  air:compliant-with :learned_policy .}]] ;
+    air:else [
+        air:assert[air:statement{foo:cone  air:non-compliant-with :learned_policy .}]] ;
+----------------------------------------------------
+>> python3 rule-learn.py repeat2
+The following events are repeats and should be new rules
+ERROR red appeared after green
+Found the explanation  ERROR red appeared after green
+Found triple
+['red', 'after', 'green']
+:added-rule-1 a air:Belief-rule;
+    rdfs:comment "Trying this out .";
+    air:if {
+        foo:red ontology:after foo:green. };
+    air:then[
+        air:description ("ERROR red appeared after green"); 
+        air:assert[air:statement{foo:cone  air:compliant-with :learned_policy .}]] ;
+    air:else [
+        air:assert[air:statement{foo:cone  air:non-compliant-with
+	:learned_policy .}]] ;
+----------------------------------------------------
+>> python3 rule-learn.py repeat3_e
+The following events are repeats and should be new rules
+ERROR red appeared after green
+Found the explanation  ERROR red appeared after green
+Found triple
+['red', 'after', 'green']
+:added-rule-1 a air:Belief-rule;
+    rdfs:comment "Trying this out .";
+    air:if {
+        foo:red ontology:after foo:green. };
+    air:then[
+        air:description ("ERROR red appeared after green"); 
+        air:assert[air:statement{foo:cone  air:compliant-with :learned_policy .}]] ;
+    air:else [
+        air:assert[air:statement{foo:cone  air:non-compliant-with :learned_policy .}]] ;
+----------------------------------------------------
+>> python3 rule-learn.py repeat4
+The following events are repeats and should be new rules
+ERROR green appeared after yellow
+Found the explanation  ERROR green appeared after yellow
+Found triple
+['green', 'after', 'yellow']
+:added-rule-1 a air:Belief-rule;
+    rdfs:comment "Trying this out .";
+    air:if {
+        foo:green ontology:after foo:yellow. };
+    air:then[
+        air:description ("ERROR green appeared after yellow"); 
+        air:assert[air:statement{foo:cone  air:compliant-with :learned_policy .}]] ;
+    air:else [
+        air:assert[air:statement{foo:cone  air:non-compliant-with :learned_policy .}]] ;
+----------------------------------------------------
+>> python3 rule-learn.py repeat5_e
+The following events are repeats and should be new rules
+ERROR yellow appeared after red
+Found the explanation  ERROR yellow appeared after red
+Found triple
+['yellow', 'after', 'red']
+:added-rule-1 a air:Belief-rule;
+    rdfs:comment "Trying this out .";
+    air:if {
+        foo:yellow ontology:after foo:red. };
+    air:then[
+        air:description ("ERROR yellow appeared after red"); 
+        air:assert[air:statement{foo:cone  air:compliant-with :learned_policy .}]] ;
+    air:else [
+        air:assert[air:statement{foo:cone  air:non-compliant-with :learned_policy .}]] ;
+

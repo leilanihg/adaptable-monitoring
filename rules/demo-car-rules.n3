@@ -1,0 +1,69 @@
+# $Date: Monday August 27 2018$
+# $Revision: $
+# $Author: lhg $
+
+# by LHG, based on the vehicle car rules for
+# the state of Massachusetts
+
+@prefix foaf:  <http://xmlns.com/foaf/0.1/>.
+@prefix air: <http://dig.csail.mit.edu/TAMI/2007/amord/air#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+
+@prefix foo: <http://foo#>.
+@prefix ontology: <http://ontology#>.
+
+@forAll :V, :P, :R, :INFO, :IMPOSED, :LENGTH, :EVENT.
+
+:safe_car_policy a air:Policy;
+		 air:rule :light-rule;
+		 air:rule :pedestrian-rule;
+#		 air:rile :speed-rule;
+		 rdfs:comment "Safe driving tactics";
+		 rdfs:label "Safe driving tactics by the state of Massachusetts".
+
+:pedestrian-rule a air:Belief-rule;
+		 rdfs:comment "Trying this out.";
+		 air:if {
+#		 	:EVENT a :V;
+			       foo:some_pedestrian ontology:InPathOf foo:my_car.
+		};
+		air:then [
+			 air:description ("There is a pedestrian in the road");
+			 air:assert [air:statement{foo:my_car air:non-compliant-with :safe_car_policy .}]];
+	        air:else [
+			 air:description ("There is not a pedestrian in the road");
+			 air:assert [air:statement{foo:my_car air:compliant-with :safe_car_policy .}]] .
+
+:light-rule a air:Belief-rule;
+		 rdfs:comment "Trying this out.";
+		 air:if {
+		 	:EVENT a :V;
+			       ontology:Location foo:some_traffic_light.
+		};
+		air:then [air:rule :traffic-light-rule].
+
+:traffic-light-rule a air:Belief-rule;
+		    rdfs:label "The traffic light rule for the United States.";
+		    air:if {
+		    	   foo:some_traffic_light ontology:LightColor "red". };
+		    air:then[ 
+			air:description ("A red light means stop.  ");
+			air:assert[air:statement{foo:my_car air:compliant-with :safe_car_policy .}]] ;
+		    air:else [
+		    	air:rule :traffic-light-other-rule].
+
+:traffic-light-other-rule a air:Belief-rule;
+		    rdfs:label "The traffic light rule for the United States.";
+		    air:if {
+		    	   foo:some_traffic_light ontology:LightColor "green". };
+		    air:then[ 
+			air:description ("Green means go.  ");
+			air:assert[air:statement{foo:my_car air:compliant-with :safe_car_policy .}]] ;
+		    air:else [  # Yellow light default
+		    	air:description ("A yellow light means 'stop if safe' ");
+			air:assert[air:statement{foo:my_car air:compliant-with :safe_car_policy .}]] .

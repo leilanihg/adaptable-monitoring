@@ -1,0 +1,18 @@
+# Author lgilpin and bzy
+
+@prefix foo: <http://foo#>.
+@prefix ontology: <http://ontology#>.
+
+foo:my_car
+    a ontology:Vehicle ;
+    ontology:LastState "go" ;
+    ontology:CurrentState "go" ;
+    ontology:Location foo:some_traffic_light .
+
+foo:some_pedestrian
+    a ontology:Pedestrian ;
+    ontology:InPathOf foo:my_car .
+
+foo:some_traffic_light
+    a ontology:TrafficLight ;
+    ontology:LightColor "yellow" .
